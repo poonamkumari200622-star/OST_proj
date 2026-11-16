@@ -1,0 +1,490 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PhishGuard | Intelligent Phishing Detection</title>
+
+    <link rel="stylesheet" href="style.css">
+
+    <!-- Icons -->
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+</head>
+
+<body>
+
+    <div class="dashboard">
+
+        <!-- SIDEBAR -->
+        <aside class="sidebar">
+
+            <div class="logo">
+                <i class="fa-solid fa-shield-halved"></i>
+                <span>PhishGuard</span>
+            </div>
+
+            <p class="menu-heading">MAIN MENU</p>
+
+            <nav class="sidebar-menu">
+
+                <a href="#" class="menu-link active" data-page="overview">
+                    <i class="fa-solid fa-chart-pie"></i>
+                    <span>Overview</span>
+                </a>
+
+                <a href="#" class="menu-link" data-page="scanner">
+                    <i class="fa-solid fa-magnifying-glass"></i>
+                    <span>URL Scanner</span>
+                </a>
+
+                <a href="#" class="menu-link" data-page="history">
+                    <i class="fa-solid fa-clock-rotate-left"></i>
+                    <span>Scan History</span>
+                </a>
+
+                <a href="#" class="menu-link" data-page="how-it-works">
+                    <i class="fa-solid fa-circle-info"></i>
+                    <span>How It Works</span>
+                </a>
+
+                <a href="#" class="menu-link" data-page="features">
+                    <i class="fa-solid fa-layer-group"></i>
+                    <span>Features</span>
+                </a>
+
+            </nav>
+
+            <div class="sidebar-bottom">
+                <div class="system-status">
+                    <span class="status-dot"></span>
+                    System Online
+                </div>
+                <p>PhishGuard Security System</p>
+            </div>
+
+        </aside>
+
+
+        <!-- MAIN CONTENT -->
+        <main class="main-content">
+
+            <!-- TOP HEADER -->
+            <header class="top-header">
+
+                <div>
+                    <h2 id="pageTitle">Overview</h2>
+                    <p id="pageSubtitle">
+                        Welcome to your security dashboard
+                    </p>
+                </div>
+
+                <div class="header-right">
+                    <span class="protection-status">
+                        <i class="fa-solid fa-shield-check"></i>
+                        Protection Active
+                    </span>
+                </div>
+
+            </header>
+
+
+            <!-- PAGE 1: OVERVIEW -->
+            <section class="page-section active" id="overview">
+
+                <div class="welcome-banner">
+                    <div>
+                        <span class="banner-label">INTELLIGENT URL PROTECTION</span>
+                        <h1>Stay Safe in the Digital World.</h1>
+                        <p>
+                            Detect suspicious links and protect yourself
+                            from potential phishing attacks.
+                        </p>
+
+                        <button class="primary-button" id="goToScanner">
+                            <i class="fa-solid fa-magnifying-glass"></i>
+                            Scan a URL Now
+                        </button>
+                    </div>
+
+                    <div class="banner-icon">
+                        <i class="fa-solid fa-shield-halved"></i>
+                        <i class="fa-solid fa-lock floating-lock"></i>
+                    </div>
+                </div>
+
+
+                <!-- STATISTICS -->
+                <div class="stats-grid">
+
+                    <div class="stat-card purple-card">
+                        <div class="stat-top">
+                            <span>Total Scans</span>
+                            <i class="fa-solid fa-link"></i>
+                        </div>
+                        <h2 id="totalScans">0</h2>
+                        <p>URLs checked</p>
+                    </div>
+
+                    <div class="stat-card red-card">
+                        <div class="stat-top">
+                            <span>Phishing Detected</span>
+                            <i class="fa-solid fa-triangle-exclamation"></i>
+                        </div>
+                        <h2 id="phishingCount">0</h2>
+                        <p>Potential threats</p>
+                    </div>
+
+                    <div class="stat-card green-card">
+                        <div class="stat-top">
+                            <span>Safe URLs</span>
+                            <i class="fa-solid fa-shield-check"></i>
+                        </div>
+                        <h2 id="safeCount">0</h2>
+                        <p>Lower-risk results</p>
+                    </div>
+
+                </div>
+
+
+                <!-- CHARTS -->
+                <div class="charts-grid">
+
+                    <div class="content-card activity-card">
+                        <div class="card-heading">
+                            <div>
+                                <h3>URL Scanning Activity</h3>
+                                <p>Recent scanning statistics</p>
+                            </div>
+                            <i class="fa-solid fa-chart-line"></i>
+                        </div>
+
+                        <canvas id="activityChart"></canvas>
+                    </div>
+
+
+                    <div class="content-card safety-card">
+                        <div class="card-heading">
+                            <div>
+                                <h3>Website Safety Status</h3>
+                                <p>Safe vs potential phishing</p>
+                            </div>
+                            <i class="fa-solid fa-chart-pie"></i>
+                        </div>
+
+                        <canvas id="safetyChart"></canvas>
+
+                        <div class="chart-legend">
+                            <span><i class="legend-dot safe-dot"></i> Safe</span>
+                            <span><i class="legend-dot danger-dot"></i> Phishing</span>
+                        </div>
+                    </div>
+
+                </div>
+
+
+                <!-- LOWER DASHBOARD CARDS -->
+                <div class="bottom-grid">
+
+                    <div class="content-card small-card">
+                        <i class="fa-solid fa-triangle-exclamation red-icon"></i>
+                        <h3>High Risk URLs</h3>
+                        <h2 id="highRiskCount">0</h2>
+                        <p>Detected during scans</p>
+                    </div>
+
+                    <div class="content-card small-card">
+                        <i class="fa-solid fa-clock purple-icon"></i>
+                        <h3>Recent Detections</h3>
+                        <h2 id="recentCount">0</h2>
+                        <p>Recent scan records</p>
+                    </div>
+
+                    <div class="content-card small-card">
+                        <i class="fa-solid fa-chart-column blue-icon"></i>
+                        <h3>Risk Indicators</h3>
+                        <h2>7</h2>
+                        <p>Basic URL checks</p>
+                    </div>
+
+                </div>
+
+            </section>
+
+
+            <!-- PAGE 2: URL SCANNER -->
+            <section class="page-section" id="scanner">
+
+                <div class="page-intro">
+                    <h1>URL Security Scanner</h1>
+                    <p>
+                        Enter a website URL to check for suspicious
+                        characteristics.
+                    </p>
+                </div>
+
+                <div class="scanner-layout">
+
+                    <div class="content-card scanner-card">
+
+                        <div class="scanner-icon">
+                            <i class="fa-solid fa-shield-halved"></i>
+                        </div>
+
+                        <h2>Check Your Website Link</h2>
+                        <p>Paste the complete URL below.</p>
+
+                        <form id="scanForm">
+
+                            <label for="urlInput">Website URL</label>
+
+                            <div class="url-input-box">
+                                <i class="fa-solid fa-link"></i>
+                                <input
+                                    type="url"
+                                    id="urlInput"
+                                    placeholder="https://example.com"
+                                    required>
+                            </div>
+
+                            <button type="submit"
+                                class="primary-button scan-button"
+                                id="scanButton">
+                                <i class="fa-solid fa-magnifying-glass"></i>
+                                SCAN URL
+                            </button>
+
+                        </form>
+
+                        <div id="loading" class="loading hidden">
+                            <i class="fa-solid fa-spinner fa-spin"></i>
+                            Analyzing URL...
+                        </div>
+
+                    </div>
+
+
+                    <!-- SCAN RESULT -->
+                    <div class="content-card result-card" id="result">
+
+                        <div class="card-heading">
+                            <h3>Scan Result</h3>
+                            <i class="fa-solid fa-chart-simple"></i>
+                        </div>
+
+                        <div class="score-circle" id="scoreCircle">
+                            <div class="score-inner">
+                                <h2 id="safetyScore">--%</h2>
+                                <span>Safety Score</span>
+                            </div>
+                        </div>
+
+                        <h3 id="resultTitle">Waiting for Scan</h3>
+
+                        <p id="resultMessage">
+                            Your URL analysis will appear here.
+                        </p>
+
+                        <div class="risk-details">
+                            <span>Risk Score</span>
+                            <strong id="riskScore">--/100</strong>
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <div class="content-card scanner-info">
+                    <h3>How scanning works</h3>
+                    <p>
+                        PhishGuard checks URL structure, suspicious
+                        keywords, domain patterns and HTTPS usage.
+                    </p>
+                </div>
+
+            </section>
+
+
+            <!-- PAGE 3: SCAN HISTORY -->
+            <section class="page-section" id="history">
+
+                <div class="page-intro">
+                    <h1>Scan History</h1>
+                    <p>Review your previously scanned URLs.</p>
+                </div>
+
+                <div class="content-card history-card">
+
+                    <div class="card-heading">
+                        <div>
+                            <h3>Recent Scans</h3>
+                            <p>Your previous scan records</p>
+                        </div>
+
+                        <button class="clear-button" id="clearHistory">
+                            <i class="fa-solid fa-trash"></i>
+                            Clear History
+                        </button>
+                    </div>
+
+                    <div class="table-container">
+
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Website URL</th>
+                                    <th>Date</th>
+                                    <th>Safety Score</th>
+                                    <th>Result</th>
+                                </tr>
+                            </thead>
+
+                            <tbody id="historyTable">
+                                <tr>
+                                    <td colspan="4" class="empty-history">
+                                        No scan history available.
+                                    </td>
+                                </tr>
+                            </tbody>
+
+                        </table>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+
+            <!-- PAGE 4: HOW IT WORKS -->
+            <section class="page-section" id="how-it-works">
+
+                <div class="page-intro">
+                    <h1>How PhishGuard Works</h1>
+                    <p>
+                        Four simple steps to analyze a suspicious URL.
+                    </p>
+                </div>
+
+                <div class="steps-grid">
+
+                    <div class="content-card step-card">
+                        <span class="step-number">01</span>
+                        <i class="fa-solid fa-link"></i>
+                        <h3>Enter URL</h3>
+                        <p>Paste the website link you want to check.</p>
+                    </div>
+
+                    <div class="content-card step-card">
+                        <span class="step-number">02</span>
+                        <i class="fa-solid fa-magnifying-glass"></i>
+                        <h3>Scan Link</h3>
+                        <p>Submit the URL for security analysis.</p>
+                    </div>
+
+                    <div class="content-card step-card">
+                        <span class="step-number">03</span>
+                        <i class="fa-solid fa-chart-line"></i>
+                        <h3>Analyze Risk</h3>
+                        <p>Check suspicious patterns and URL indicators.</p>
+                    </div>
+
+                    <div class="content-card step-card">
+                        <span class="step-number">04</span>
+                        <i class="fa-solid fa-shield-halved"></i>
+                        <h3>View Result</h3>
+                        <p>Get your safety score and scan explanation.</p>
+                    </div>
+
+                </div>
+
+                <div class="content-card explanation-card">
+                    <i class="fa-solid fa-circle-info"></i>
+                    <div>
+                        <h3>Important Security Note</h3>
+                        <p>
+                            A low-risk score does not guarantee that
+                            a website is completely safe.
+                        </p>
+                    </div>
+                </div>
+
+            </section>
+
+
+            <!-- PAGE 5: FEATURES -->
+            <section class="page-section" id="features">
+
+                <div class="page-intro">
+                    <h1>PhishGuard Features</h1>
+                    <p>
+                        Explore the tools that help identify suspicious URLs.
+                    </p>
+                </div>
+
+                <div class="features-grid">
+
+                    <div class="content-card feature-card">
+                        <i class="fa-solid fa-link"></i>
+                        <h3>URL Pattern Analysis</h3>
+                        <p>Checks website links for suspicious characteristics.</p>
+                    </div>
+
+                    <div class="content-card feature-card">
+                        <i class="fa-solid fa-triangle-exclamation"></i>
+                        <h3>Phishing Detection</h3>
+                        <p>Identifies potentially suspicious keywords and patterns.</p>
+                    </div>
+
+                    <div class="content-card feature-card">
+                        <i class="fa-solid fa-gauge-high"></i>
+                        <h3>Safety Score</h3>
+                        <p>Shows a safety percentage based on detected indicators.</p>
+                    </div>
+
+                    <div class="content-card feature-card">
+                        <i class="fa-solid fa-bolt"></i>
+                        <h3>Quick Scanning</h3>
+                        <p>Provides URL analysis through the backend server.</p>
+                    </div>
+
+                    <div class="content-card feature-card">
+                        <i class="fa-solid fa-clock-rotate-left"></i>
+                        <h3>Scan History</h3>
+                        <p>Allows users to review previously scanned URLs.</p>
+                    </div>
+
+                    <div class="content-card feature-card">
+                        <i class="fa-solid fa-trash-can"></i>
+                        <h3>Clear History</h3>
+                        <p>Allows users to clear their saved scan records.</p>
+                    </div>
+
+                </div>
+
+            </section>
+
+
+            <!-- FOOTER -->
+            <footer class="footer">
+                <i class="fa-solid fa-shield-halved"></i>
+                <strong>PhishGuard</strong>
+                <p>Browse Smart. Stay Secure.</p>
+                <span>© 2026 PhishGuard | Intelligent Phishing Detection System</span>
+            </footer>
+
+        </main>
+
+    </div>
+
+
+    <!-- Chart.js for Dashboard Graphs -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <!-- JavaScript -->
+    <script src="script.js"></script>
+
+</body>
+</html>
