@@ -15,7 +15,7 @@ app.use(express.json());
 
 
 // 2. SERVE FRONTEND FILES
-const frontendPath = path.join(__dirname, "../Frontend");
+const frontendPath = path.join(__dirname, "../frontend");
 
 app.use(express.static(frontendPath));
 
